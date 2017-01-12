@@ -1,0 +1,30 @@
+{
+  "ver": "1.0.0",
+  "uuid": "b0235385-108d-4822-8be8-411e3a00f768",
+  "type": "sprite",
+  "wrapMode": "clamp",
+  "filterMode": "bilinear",
+  "subMetas": {
+    "Marcelino": {
+      "ver": "1.0.3",
+      "uuid": "7e6754de-fa4c-4b58-ad62-98fa35cced10",
+      "rawTextureUuid": "b0235385-108d-4822-8be8-411e3a00f768",
+      "trimType": "auto",
+      "trimThreshold": 1,
+      "rotated": false,
+      "offsetX": 0,
+      "offsetY": 0,
+      "trimX": 0,
+      "trimY": 0,
+      "width": 170,
+      "height": 218,
+      "rawWidth": 170,
+      "rawHeight": 218,
+      "borderTop": 0,
+      "borderBottom": 0,
+      "borderLeft": 0,
+      "borderRight": 0,
+      "subMetas": {}
+    }
+  }
+}
