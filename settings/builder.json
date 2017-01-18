@@ -1,7 +1,5 @@
 {
-  "excludeScenes": [
-    "657e6d6b-8f65-4027-87c9-a9841121cfd5"
-  ],
+  "excludeScenes": [],
   "includeAnySDK": false,
   "includeSdk": [
     "anysdk"
@@ -14,6 +12,6 @@
   },
   "packageName": "org.cocos2d.helloworld",
   "startScene": "b422ea6b-a9e6-4be1-baa5-f080074fa7a0",
-  "title": "galapagos-demo",
+  "title": "galapagos",
   "webOrientation": "auto"
 }

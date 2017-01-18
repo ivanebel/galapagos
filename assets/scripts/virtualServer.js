@@ -5,6 +5,7 @@ cc.Class({
         _shuffler: null,
 
         _shuffledArray: null,
+        _shuffledBonus: null,
         _fakeTicket: ''
     },
 
@@ -22,8 +23,10 @@ cc.Class({
         this._shuffler = this.node.getComponent('shuffle');
 
         this._shuffledArray = this._shuffler.shuffle();
+        this._shuffledBonus = this._shuffler.shuffleBonus();
 
-        cc.log(this._shuffledArray);
+        cc.log("Isla:" + this._shuffledArray);
+        cc.log("Bonus:" + this._shuffledBonus);
 
         //this._fakeTicket.push(this._shuffledArray);
         this._fakeTicket = this._shuffledArray;

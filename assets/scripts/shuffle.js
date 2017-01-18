@@ -27,20 +27,41 @@ cc.Class({
 
         var currentIndex = tileArray.length, temporaryValue, randomIndex;
 
-        // While there remain elements to shuffle...
+        // Mientras haya algún elemento:
         while (0 !== currentIndex) {
 
-            // Pick a remaining element...
+            // Tomo un elemento (que sobre)
             randomIndex = Math.floor(Math.random() * currentIndex);
             currentIndex -= 1;
 
-            // And swap it with the current element.
+            // Y lo swappeo con otro
             temporaryValue = tileArray[currentIndex];
             tileArray[currentIndex] = tileArray[randomIndex];
             tileArray[randomIndex] = temporaryValue;
         }
 
     return tileArray;
+    },
+
+    shuffleBonus(){
+        var tileArray = ["S1", "S2", "S3", "S4", "S5" ];
+
+        var currentIndex = tileArray.length, temporaryValue, randomIndex;
+
+        // Mientras haya algún elemento:
+        while (0 !== currentIndex) {
+
+            // Tomo un elemento (que sobre)
+            randomIndex = Math.floor(Math.random() * currentIndex);
+            currentIndex -= 1;
+
+            // Y lo swappeo con otro
+            temporaryValue = tileArray[currentIndex];
+            tileArray[currentIndex] = tileArray[randomIndex];
+            tileArray[randomIndex] = temporaryValue;
+        }
+
+        return tileArray;
     }
 
 
