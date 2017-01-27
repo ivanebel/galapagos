@@ -17,11 +17,14 @@ cc.Class({
 
         remainingChoices: 0,
 
-        _iTilesTortuga: 0,
+        _iTilesTortuga: 0,          //bye
+        _iTilesTortugaGalapagos: 0,
+        _iTilesTortugaMarina: 0,
         _iTilesIguana: 0,
         _iTilesFoca: 0,
-        _iTilesAve: 0,
-        _iTilesPinguino: 0,
+        _iTilesAve: 0,              //bye
+        _iTilesPinguino: 0,         //bye
+        _iTilesTiburon: 0,
 
         _uiLayer: cc.Node,
         _uiLayerPrefab: {
@@ -35,7 +38,14 @@ cc.Class({
             type: cc.SpriteFrame
         },
 
+        tileEmpty:
+        {
+            default: null,
+            type: cc.SpriteFrame
+        },
+
         _tierras: 0,
+        _emptyTiles: 0,
 
         _timesBet: 0
 
@@ -47,6 +57,7 @@ cc.Class({
         cc.log('Loading VirtualServer');
 
         this.tileTierra = cc.find('Galapagos/gameLayer/tiles/tierra');
+        this.tileEmpty = cc.find('Galapagos/gameLayer/tiles/empty');
 
         this.remainingChoices = 5;
         var rem = cc.find('Galapagos/uiLayer/remainingMoves').getComponent(cc.Label).string = this.remainingChoices;
@@ -223,11 +234,12 @@ cc.Class({
     getTile (str)
     {
         var tile;
+        var tp;
 
-        if (str == "T")
+        if (str == "E")
         {
-            this._tierras += 1;
-            if (this._tierras == 4)
+            this._emptyTiles += 1;
+            if (this._emptyTiles == 4)
             {
                 var audioNode = cc.find('Galapagos/audioManager');
                 this._audioManager = audioNode.getComponent('audioManager');
@@ -238,101 +250,116 @@ cc.Class({
         }
         else
         {
-            this._tierras = 0;
+            this._emptyTiles = 0;
         }
 
-        var lbl = cc.find('Galapagos/uiLayer/tierraCount').getComponent(cc.Label).string = this._tierras;
+        var lbl = cc.find('Galapagos/uiLayer/tierraCount').getComponent(cc.Label).string = this._emptyTiles;
 
         this.remainingChoices -= 1;
         var rem = cc.find('Galapagos/uiLayer/remainingMoves').getComponent(cc.Label).string = this.remainingChoices;
 
         switch (str)
         {
-            case "T":
-                tile = cc.find('Galapagos/gameLayer/tiles/tierra');
+            case "E":
+                tile = cc.find('Galapagos/gameLayer/tiles/empty');
                 break;
             case "G1":
-                tile = cc.find('Galapagos/gameLayer/animals/tortuga/Tortuga_01');
-                var sprite = cc.find('Galapagos/uiLayer/tablaPagos/tortuga/tpTortuga1').getComponent(cc.Sprite).spriteFrame = tile.getComponent(cc.Sprite).spriteFrame;
-                this._iTilesTortuga += 1;
+                tile = cc.find('Galapagos/gameLayer/animals/tortugaGalapagos/tortuga_galapagos_1');
+                tp = cc.find('Galapagos/gameLayer/animals/tabla_pagos/tp_tortugag_1');
+                var sprite = cc.find('Galapagos/uiLayer/tablaPagos/tortugaGalapagos/tp_tortugag_1').getComponent(cc.Sprite).spriteFrame = tp.getComponent(cc.Sprite).spriteFrame;
+                this._iTilesTortugaGalapagos += 1;
                 break;
             case "G2":
-                tile = cc.find('Galapagos/gameLayer/animals/tortuga/Tortuga_02');
-                var sprite = cc.find('Galapagos/uiLayer/tablaPagos/tortuga/tpTortuga2').getComponent(cc.Sprite).spriteFrame = tile.getComponent(cc.Sprite).spriteFrame;
-                this._iTilesTortuga += 1;
+                tile = cc.find('Galapagos/gameLayer/animals/tortugaGalapagos/tortuga_galapagos_2');
+                tp = cc.find('Galapagos/gameLayer/animals/tabla_pagos/tp_tortugag_2');
+                var sprite = cc.find('Galapagos/uiLayer/tablaPagos/tortugaGalapagos/tp_tortugag_2').getComponent(cc.Sprite).spriteFrame = tp.getComponent(cc.Sprite).spriteFrame;
+                this._iTilesTortugaGalapagos += 1;
                 break;
             case "G3":
-                tile = cc.find('Galapagos/gameLayer/animals/tortuga/Tortuga_03');
-                var sprite = cc.find('Galapagos/uiLayer/tablaPagos/tortuga/tpTortuga3').getComponent(cc.Sprite).spriteFrame = tile.getComponent(cc.Sprite).spriteFrame;
-                this._iTilesTortuga += 1;
+                tile = cc.find('Galapagos/gameLayer/animals/tortugaGalapagos/tortuga_galapagos_3');
+                tp = cc.find('Galapagos/gameLayer/animals/tabla_pagos/tp_tortugag_3');
+                var sprite = cc.find('Galapagos/uiLayer/tablaPagos/tortugaGalapagos/tp_tortugag_3').getComponent(cc.Sprite).spriteFrame = tp.getComponent(cc.Sprite).spriteFrame;
+                this._iTilesTortugaGalapagos += 1;
                 break;
             case "G4":
-                tile = cc.find('Galapagos/gameLayer/animals/tortuga/Tortuga_04');
-                var sprite = cc.find('Galapagos/uiLayer/tablaPagos/tortuga/tpTortuga4').getComponent(cc.Sprite).spriteFrame = tile.getComponent(cc.Sprite).spriteFrame;
-                this._iTilesTortuga += 1;
+                tile = cc.find('Galapagos/gameLayer/animals/tortugaGalapagos/tortuga_galapagos_4');
+                tp = cc.find('Galapagos/gameLayer/animals/tabla_pagos/tp_tortugag_4');
+                var sprite = cc.find('Galapagos/uiLayer/tablaPagos/tortugaGalapagos/tp_tortugag_4').getComponent(cc.Sprite).spriteFrame = tp.getComponent(cc.Sprite).spriteFrame;
+                this._iTilesTortugaGalapagos += 1;
                 break;
             case "G5":
-                tile = cc.find('Galapagos/gameLayer/animals/tortuga/Tortuga_05');
-                var sprite = cc.find('Galapagos/uiLayer/tablaPagos/tortuga/tpTortuga5').getComponent(cc.Sprite).spriteFrame = tile.getComponent(cc.Sprite).spriteFrame;
-                this._iTilesTortuga += 1;
+                tile = cc.find('Galapagos/gameLayer/animals/tortugaGalapagos/tortuga_galapagos_5');
+                tp = cc.find('Galapagos/gameLayer/animals/tabla_pagos/tp_tortugag_5');
+                var sprite = cc.find('Galapagos/uiLayer/tablaPagos/tortugaGalapagos/tp_tortugag_5').getComponent(cc.Sprite).spriteFrame = tp.getComponent(cc.Sprite).spriteFrame;
+                this._iTilesTortugaGalapagos += 1;
+                break;
+            case "M1":
+                tile = cc.find('Galapagos/gameLayer/animals/tortugaMarina/tortuga_marina_1');
+                tp = cc.find('Galapagos/gameLayer/animals/tabla_pagos/tp_tortugam_1');
+                var sprite = cc.find('Galapagos/uiLayer/tablaPagos/tortugaMarina/tp_tortugam_1').getComponent(cc.Sprite).spriteFrame = tp.getComponent(cc.Sprite).spriteFrame;
+                this._iTilesTortugaMarina += 1;
+                break;
+            case "M2":
+                tile = cc.find('Galapagos/gameLayer/animals/tortugaMarina/tortuga_marina_2');
+                tp = cc.find('Galapagos/gameLayer/animals/tabla_pagos/tp_tortugam_2');
+                var sprite = cc.find('Galapagos/uiLayer/tablaPagos/tortugaMarina/tp_tortugam_2').getComponent(cc.Sprite).spriteFrame = tp.getComponent(cc.Sprite).spriteFrame;
+                this._iTilesTortugaMarina += 1;
+                break;
+            case "M3":
+                tile = cc.find('Galapagos/gameLayer/animals/tortugaMarina/tortuga_marina_3');
+                tp = cc.find('Galapagos/gameLayer/animals/tabla_pagos/tp_tortugam_3');
+                var sprite = cc.find('Galapagos/uiLayer/tablaPagos/tortugaMarina/tp_tortugam_3').getComponent(cc.Sprite).spriteFrame = tp.getComponent(cc.Sprite).spriteFrame;
+                this._iTilesTortugaMarina += 1;
+                break;
+            case "M4":
+                tile = cc.find('Galapagos/gameLayer/animals/tortugaMarina/tortuga_marina_4');
+                tp = cc.find('Galapagos/gameLayer/animals/tabla_pagos/tp_tortugam_4');
+                var sprite = cc.find('Galapagos/uiLayer/tablaPagos/tortugaMarina/tp_tortugam_4').getComponent(cc.Sprite).spriteFrame = tp.getComponent(cc.Sprite).spriteFrame;
+                this._iTilesTortugaMarina += 1;
                 break;
             case "I1":
-                tile = cc.find('Galapagos/gameLayer/animals/iguana/Iguana_01');
-                var sprite = cc.find('Galapagos/uiLayer/tablaPagos/iguana/tpIguana1').getComponent(cc.Sprite).spriteFrame = tile.getComponent(cc.Sprite).spriteFrame;
+                tile = cc.find('Galapagos/gameLayer/animals/iguana/iguana_1');
+                tp = cc.find('Galapagos/gameLayer/animals/tabla_pagos/tp_iguana_1');
+                var sprite = cc.find('Galapagos/uiLayer/tablaPagos/iguana/tp_iguana_1').getComponent(cc.Sprite).spriteFrame = tp.getComponent(cc.Sprite).spriteFrame;
                 this._iTilesIguana += 1;
                 break;
             case "I2":
-                tile = cc.find('Galapagos/gameLayer/animals/iguana/Iguana_02');
-                var sprite = cc.find('Galapagos/uiLayer/tablaPagos/iguana/tpIguana2').getComponent(cc.Sprite).spriteFrame = tile.getComponent(cc.Sprite).spriteFrame;
+                tile = cc.find('Galapagos/gameLayer/animals/iguana/iguana_2');
+                tp = cc.find('Galapagos/gameLayer/animals/tabla_pagos/tp_iguana_2');
+                var sprite = cc.find('Galapagos/uiLayer/tablaPagos/iguana/tp_iguana_2').getComponent(cc.Sprite).spriteFrame = tp.getComponent(cc.Sprite).spriteFrame;
                 this._iTilesIguana += 1;
                 break;
             case "I3":
-                tile = cc.find('Galapagos/gameLayer/animals/iguana/Iguana_03');
-                var sprite = cc.find('Galapagos/uiLayer/tablaPagos/iguana/tpIguana3').getComponent(cc.Sprite).spriteFrame = tile.getComponent(cc.Sprite).spriteFrame;
-                this._iTilesIguana += 1;
-                break;
-            case "I4":
-                tile = cc.find('Galapagos/gameLayer/animals/iguana/Iguana_04');
-                var sprite = cc.find('Galapagos/uiLayer/tablaPagos/iguana/tpIguana4').getComponent(cc.Sprite).spriteFrame = tile.getComponent(cc.Sprite).spriteFrame;
+                tile = cc.find('Galapagos/gameLayer/animals/iguana/iguana_3');
+                tp = cc.find('Galapagos/gameLayer/animals/tabla_pagos/tp_iguana_3');
+                var sprite = cc.find('Galapagos/uiLayer/tablaPagos/iguana/tp_iguana_3').getComponent(cc.Sprite).spriteFrame = tp.getComponent(cc.Sprite).spriteFrame;
                 this._iTilesIguana += 1;
                 break;
             case "F1":
-                tile = cc.find('Galapagos/gameLayer/animals/foca/Foca_01');
-                var sprite = cc.find('Galapagos/uiLayer/tablaPagos/foca/tpFoca1').getComponent(cc.Sprite).spriteFrame = tile.getComponent(cc.Sprite).spriteFrame;
+                tile = cc.find('Galapagos/gameLayer/animals/foca/foca_1');
+                tp = cc.find('Galapagos/gameLayer/animals/tabla_pagos/tp_foca_1');
+                var sprite = cc.find('Galapagos/uiLayer/tablaPagos/foca/tp_foca_1').getComponent(cc.Sprite).spriteFrame = tp.getComponent(cc.Sprite).spriteFrame;
                 this._iTilesFoca += 1;
                 break;
             case "F2":
-                tile = cc.find('Galapagos/gameLayer/animals/foca/Foca_02');
-                var sprite = cc.find('Galapagos/uiLayer/tablaPagos/foca/tpFoca2').getComponent(cc.Sprite).spriteFrame = tile.getComponent(cc.Sprite).spriteFrame;
+                tile = cc.find('Galapagos/gameLayer/animals/foca/foca_2');
+                tp = cc.find('Galapagos/gameLayer/animals/tabla_pagos/tp_foca_2');
+                var sprite = cc.find('Galapagos/uiLayer/tablaPagos/foca/tp_foca_2').getComponent(cc.Sprite).spriteFrame = tp.getComponent(cc.Sprite).spriteFrame;
                 this._iTilesFoca += 1;
                 break;
-            case "F3":
-                tile = cc.find('Galapagos/gameLayer/animals/foca/Foca_03');
-                var sprite = cc.find('Galapagos/uiLayer/tablaPagos/foca/tpFoca3').getComponent(cc.Sprite).spriteFrame = tile.getComponent(cc.Sprite).spriteFrame;
-                this._iTilesFoca += 1;
-                break;
-            case "A1":
-                tile = cc.find('Galapagos/gameLayer/animals/aveFragata/Ave_Fragata_01');
-                var sprite = cc.find('Galapagos/uiLayer/tablaPagos/aveFragata/tpAveFragata1').getComponent(cc.Sprite).spriteFrame = tile.getComponent(cc.Sprite).spriteFrame;
-                this._iTilesAve += 1;
-                break;
-            case "A2":
-                tile = cc.find('Galapagos/gameLayer/animals/aveFragata/Ave_Fragata_02');
-                var sprite = cc.find('Galapagos/uiLayer/tablaPagos/aveFragata/tpAveFragata2').getComponent(cc.Sprite).spriteFrame = tile.getComponent(cc.Sprite).spriteFrame;
-                this._iTilesAve += 1;
-                break;
-            case "P":
-                tile = cc.find('Galapagos/gameLayer/animals/pinguino/Pinguino_01');
-                var sprite = cc.find('Galapagos/uiLayer/tablaPagos/pinguino/tpPinguino').getComponent(cc.Sprite).spriteFrame = tile.getComponent(cc.Sprite).spriteFrame;
-                this._iTilesPinguino += 1;
+            case "T":
+                tile = cc.find('Galapagos/gameLayer/animals/tiburon/tiburon_1');
+                tp = cc.find('Galapagos/gameLayer/animals/tabla_pagos/tp_tiburon_1');
+                var sprite = cc.find('Galapagos/uiLayer/tablaPagos/tiburon/tp_tiburon_1').getComponent(cc.Sprite).spriteFrame = tp.getComponent(cc.Sprite).spriteFrame;
+                this._iTilesTiburon += 1;
                 break;
         }
 
-        this.checkfullTortuga();
+        this.checkfullTortugaGalapagos();
+        this.checkfullTortugaMarina();
         this.checkFullIguana();
         this.checkFullFoca();
-        this.checkFullAveFragata();
-        this.checkFullPinguino();
+        this.checkFullTiburon();
 
         //cc.log("Tierras: " + this._tierras);
 
@@ -356,20 +383,32 @@ cc.Class({
       
     },
 
-    checkfullTortuga(){
-        if (this._iTilesTortuga == 5)
+    checkfullTortugaGalapagos(){
+        if (this._iTilesTortugaGalapagos == 5)
         {
             var audioNode = cc.find('Galapagos/audioManager');
             this._audioManager = audioNode.getComponent('audioManager');
             this._audioManager.playSweep();
             cc.log("Tortuga Galápagos Completa!");
 
-            this._iTilesTortuga = 0;
+            this._iTilesTortugaGalapagos = 0;
+        }
+    },
+
+    checkfullTortugaMarina(){
+        if (this._iTilesTortugaMarina == 4)
+        {
+            var audioNode = cc.find('Galapagos/audioManager');
+            this._audioManager = audioNode.getComponent('audioManager');
+            this._audioManager.playSweep();
+            cc.log("Tortuga Marina Completa!");
+
+            this._iTilesTortugaMarina = 0;
         }
     },
 
     checkFullIguana(){
-        if (this._iTilesIguana == 4)
+        if (this._iTilesIguana == 3)
         {
             var audioNode = cc.find('Galapagos/audioManager');
             this._audioManager = audioNode.getComponent('audioManager');
@@ -381,7 +420,7 @@ cc.Class({
     },
 
     checkFullFoca(){
-        if (this._iTilesFoca == 3)
+        if (this._iTilesFoca == 2)
         {
             var audioNode = cc.find('Galapagos/audioManager');
             this._audioManager = audioNode.getComponent('audioManager');
@@ -392,28 +431,15 @@ cc.Class({
         }
     },
 
-    checkFullAveFragata()
-    {
-        if (this._iTilesAve == 2)
+    checkFullTiburon(){
+        if (this._iTilesTiburon >= 1)
         {
             var audioNode = cc.find('Galapagos/audioManager');
             this._audioManager = audioNode.getComponent('audioManager');
             this._audioManager.playSweep();
-            cc.log("Ave Fragata Completa!");
-
-            this._iTilesAve = 0;
-        }
-    },
-
-    checkFullPinguino(){
-        if (this._iTilesPinguino >= 1)
-        {
-            var audioNode = cc.find('Galapagos/audioManager');
-            this._audioManager = audioNode.getComponent('audioManager');
-            this._audioManager.playSweep();
-            cc.log("Pinguino Completo!");
+            cc.log("Tiburon Completo!");
         
-            this._iTilesPinguino = 0;
+            this._iTilesTiburon = 0;
         }
         
     }

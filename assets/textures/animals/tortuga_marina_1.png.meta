@@ -1,0 +1,30 @@
+{
+  "ver": "1.0.0",
+  "uuid": "b3eb3102-7ba7-4ba9-844e-29e10726fdea",
+  "type": "sprite",
+  "wrapMode": "clamp",
+  "filterMode": "bilinear",
+  "subMetas": {
+    "tortuga_marina_1": {
+      "ver": "1.0.3",
+      "uuid": "1c1815c8-6535-4026-9e5d-6ab9fac03217",
+      "rawTextureUuid": "b3eb3102-7ba7-4ba9-844e-29e10726fdea",
+      "trimType": "auto",
+      "trimThreshold": 1,
+      "rotated": false,
+      "offsetX": 0.5,
+      "offsetY": 0,
+      "trimX": 1,
+      "trimY": 1,
+      "width": 152,
+      "height": 153,
+      "rawWidth": 153,
+      "rawHeight": 155,
+      "borderTop": 0,
+      "borderBottom": 0,
+      "borderLeft": 0,
+      "borderRight": 0,
+      "subMetas": {}
+    }
+  }
+}

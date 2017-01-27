@@ -17,13 +17,13 @@ cc.Class({
      */
     shuffle() {
 
-        var tileArray = ["G1", "G2", "G3", "G4", "G5",
-                          "I1", "I2", "I3", "I4",
-                          "F1", "F2", "F3",
-                          "A1", "A2",
-                          "P", "P",
-                          "T", "T", "T", "T", "T", "T", "T",
-                          "T", "T", "T", "T", "T", "T", "T" ];
+        var tileArray = [ "G1", "G2", "G3", "G4", "G5",
+                          "M1", "M2", "M3", "M4",
+                          "I1", "I2", "I3",
+                          "F1", "F2",
+                          "T", "T",
+                          "E", "E", "E", "E", "E", "E", "E",
+                          "E", "E", "E", "E", "E", "E", "E" ];
 
         var currentIndex = tileArray.length, temporaryValue, randomIndex;
 

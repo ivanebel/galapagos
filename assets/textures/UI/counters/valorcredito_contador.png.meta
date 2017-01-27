@@ -1,0 +1,30 @@
+{
+  "ver": "1.0.0",
+  "uuid": "966c3646-f44b-4687-a594-16d4fa6cf011",
+  "type": "sprite",
+  "wrapMode": "clamp",
+  "filterMode": "bilinear",
+  "subMetas": {
+    "valorcredito_contador": {
+      "ver": "1.0.3",
+      "uuid": "5193854e-ec96-4dc2-ba8d-8fad93c59843",
+      "rawTextureUuid": "966c3646-f44b-4687-a594-16d4fa6cf011",
+      "trimType": "auto",
+      "trimThreshold": 1,
+      "rotated": false,
+      "offsetX": -0.5,
+      "offsetY": 1,
+      "trimX": 24,
+      "trimY": 22,
+      "width": 381,
+      "height": 148,
+      "rawWidth": 430,
+      "rawHeight": 194,
+      "borderTop": 0,
+      "borderBottom": 0,
+      "borderLeft": 0,
+      "borderRight": 0,
+      "subMetas": {}
+    }
+  }
+}
