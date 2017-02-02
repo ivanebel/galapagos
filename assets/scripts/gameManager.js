@@ -13,6 +13,7 @@ cc.Class({
 
         _waitUserInput: false,
 
+
         _bonus: cc.Node,
 
         remainingChoices: 0,
@@ -47,7 +48,9 @@ cc.Class({
         _tierras: 0,
         _emptyTiles: 0,
 
-        _timesBet: 0
+        _timesBet: 0,
+
+        _chosenTiles: null
 
     },
 
@@ -56,13 +59,15 @@ cc.Class({
         this._gameServer = this.node.getComponent('virtualServer');
         cc.log('Loading VirtualServer');
 
-        this.tileTierra = cc.find('Galapagos/gameLayer/tiles/tierra');
+        //this.tileTierra = cc.find('Galapagos/gameLayer/tiles/tierra');
         this.tileEmpty = cc.find('Galapagos/gameLayer/tiles/empty');
 
         this.remainingChoices = 5;
-        var rem = cc.find('Galapagos/uiLayer/remainingMoves').getComponent(cc.Label).string = this.remainingChoices;
+        var rem = cc.find('Galapagos/uiLayer/contadores/contador_apuestas/remainingMoves').getComponent(cc.Label).string = this.remainingChoices;
 
         this._timesBet = 0;
+
+        this._chosenTiles = [];
 
 //Solo para pruebas, mostrar el contenido de cada tile:
         var isla = cc.find('Galapagos/uiLayer/lblTiles').getComponent(cc.Label).string = this._gameServer._fakeTicket.toString();
@@ -95,11 +100,30 @@ cc.Class({
             return;
         }
 
+/** 
+        if (customEventData == "reglas")
+        {
+            cc.find('Galapagos/uiLayer/reglas_overlay/reglas_overlay').opacity = 255;
+            return;
+        }
+*/
         var pos = customEventData;
 
         var content = this._gameServer._fakeTicket[pos];
 
-        cc.log(content);
+        cc.log("Elegido: " + content);
+
+        if (this.remainingChoices <= 0) {cc.log("No hay movimientos disponibles."); return;}
+
+        if (this.checkTileArray(this._chosenTiles, content) == false)  //el cuadro seleccionado no ha sido elegido previamente.
+        { 
+            this._chosenTiles.push(content);    //se guarda el cuadro seleccionado
+        }
+        else 
+        { 
+            cc.log(content + " ya existe.")
+            return; 
+        }
 
         this.userChoice(content, pos);
 
@@ -126,6 +150,7 @@ cc.Class({
 
         var tileComponent = this.getTile(content);
 
+        
         switch (pos) {
             //Fila A
             case "0":
@@ -236,6 +261,10 @@ cc.Class({
         var tile;
         var tp;
 
+        cc.log("Tiles: " + this._chosenTiles);
+
+        
+
         if (str == "E")
         {
             this._emptyTiles += 1;
@@ -253,10 +282,12 @@ cc.Class({
             this._emptyTiles = 0;
         }
 
-        var lbl = cc.find('Galapagos/uiLayer/tierraCount').getComponent(cc.Label).string = this._emptyTiles;
+        var lbl = cc.find('Galapagos/uiLayer/contadores/contador_bonus/tierraCount').getComponent(cc.Label).string = this._emptyTiles;
 
         this.remainingChoices -= 1;
-        var rem = cc.find('Galapagos/uiLayer/remainingMoves').getComponent(cc.Label).string = this.remainingChoices;
+        var rem = cc.find('Galapagos/uiLayer/contadores/contador_apuestas/remainingMoves').getComponent(cc.Label).string = this.remainingChoices;
+
+        
 
         switch (str)
         {
@@ -352,6 +383,8 @@ cc.Class({
                 tp = cc.find('Galapagos/gameLayer/animals/tabla_pagos/tp_tiburon_1');
                 var sprite = cc.find('Galapagos/uiLayer/tablaPagos/tiburon/tp_tiburon_1').getComponent(cc.Sprite).spriteFrame = tp.getComponent(cc.Sprite).spriteFrame;
                 this._iTilesTiburon += 1;
+
+                //var festejo = cc.find('Galapagos/uiLayer/festejos').opacity = 255;
                 break;
         }
 
@@ -364,6 +397,19 @@ cc.Class({
         //cc.log("Tierras: " + this._tierras);
 
         return tile.getComponent(cc.Sprite);
+    },
+
+    checkTileArray(a, obj) 
+    {
+    var i = a.length;
+        
+    while (i--) 
+    {
+       if (obj === "E") { cc.log(obj + " encontrado."); return false; }     // Quiero que salga del loop si encuentra un casillero vacio.
+       if (a[i] === obj) { cc.log(obj + " encontrado."); return true; }
+    }
+
+    return false;
     },
 
     doPlusApuesta ()
@@ -379,7 +425,7 @@ cc.Class({
             this.remainingChoices = 1;
         }
 
-        var rem = cc.find('Galapagos/uiLayer/remainingMoves').getComponent(cc.Label).string = this.remainingChoices;
+        var rem = cc.find('Galapagos/uiLayer/contadores/contador_apuestas/remainingMoves').getComponent(cc.Label).string = this.remainingChoices;
       
     },
 
