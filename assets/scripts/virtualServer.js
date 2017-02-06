@@ -6,7 +6,8 @@ cc.Class({
 
         _shuffledArray: null,
         _shuffledBonus: null,
-        _fakeTicket: ''
+        _fakeTicket: '',
+        _fakeBonus: ''
     },
 
     // use this for initialization
@@ -30,6 +31,7 @@ cc.Class({
 
         //this._fakeTicket.push(this._shuffledArray);
         this._fakeTicket = this._shuffledArray;
+        this._fakeBonus = this._shuffledBonus;
 
     },
 

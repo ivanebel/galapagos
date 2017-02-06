@@ -1,0 +1,30 @@
+{
+  "ver": "1.0.0",
+  "uuid": "26d83c0e-878c-4107-a173-c4b8d168b549",
+  "type": "sprite",
+  "wrapMode": "clamp",
+  "filterMode": "bilinear",
+  "subMetas": {
+    "interfase_galapagos_mascara_glow__00013": {
+      "ver": "1.0.3",
+      "uuid": "ff6621e2-9219-4557-b84b-139bbc390234",
+      "rawTextureUuid": "26d83c0e-878c-4107-a173-c4b8d168b549",
+      "trimType": "auto",
+      "trimThreshold": 1,
+      "rotated": false,
+      "offsetX": 56,
+      "offsetY": -58,
+      "trimX": 359,
+      "trimY": 116,
+      "width": 1314,
+      "height": 964,
+      "rawWidth": 1920,
+      "rawHeight": 1080,
+      "borderTop": 0,
+      "borderBottom": 0,
+      "borderLeft": 0,
+      "borderRight": 0,
+      "subMetas": {}
+    }
+  }
+}

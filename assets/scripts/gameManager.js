@@ -72,6 +72,10 @@ cc.Class({
 //Solo para pruebas, mostrar el contenido de cada tile:
         var isla = cc.find('Galapagos/uiLayer/lblTiles').getComponent(cc.Label).string = this._gameServer._fakeTicket.toString();
 
+        //var anim = cc.find('Galapagos/uiLayer/ui_glow').getComponent(cc.Animation);
+        //var animState = anim.play('ui_glow');
+        //animState.repeatCount = Infinity;
+
 /** 
         this._currentState = GM_IDLE;
 
@@ -94,6 +98,11 @@ cc.Class({
 
     onButtonClick: function(event, customEventData) 
     {
+        if (customEventData == "bonus")
+        {
+            cc.director.loadScene('bonus');
+        }
+
         if (customEventData == "plusApuesta")
         {
             this.doPlusApuesta();
@@ -264,10 +273,35 @@ cc.Class({
         cc.log("Tiles: " + this._chosenTiles);
 
         
-
+        // Chequeo si se encontró una "E" -> casillero vacío
         if (str == "E")
         {
             this._emptyTiles += 1;
+
+            switch(this._emptyTiles)
+            {
+                case 1:
+                    cc.find('Galapagos/uiLayer/bonus').getComponent(cc.Animation).play('star_found');
+                    cc.find('Galapagos/uiLayer/bonus/star_1').getComponent(cc.Sprite).spriteFrame = cc.find('Galapagos/hiddenLayer/star').getComponent(cc.Sprite).spriteFrame;
+                    cc.find('Galapagos/uiLayer/bonus/star_1_glow').getComponent(cc.Sprite).spriteFrame = cc.find('Galapagos/hiddenLayer/star_glow').getComponent(cc.Sprite).spriteFrame;
+                    break;
+                case 2:
+                    cc.find('Galapagos/uiLayer/bonus').getComponent(cc.Animation).play('star_found');
+                    cc.find('Galapagos/uiLayer/bonus/star_2').getComponent(cc.Sprite).spriteFrame = cc.find('Galapagos/hiddenLayer/star').getComponent(cc.Sprite).spriteFrame;
+                    cc.find('Galapagos/uiLayer/bonus/star_2_glow').getComponent(cc.Sprite).spriteFrame = cc.find('Galapagos/hiddenLayer/star_glow').getComponent(cc.Sprite).spriteFrame;
+                    break;
+                case 3:
+                    cc.find('Galapagos/uiLayer/bonus').getComponent(cc.Animation).play('star_found');
+                    cc.find('Galapagos/uiLayer/bonus/star_3').getComponent(cc.Sprite).spriteFrame = cc.find('Galapagos/hiddenLayer/star').getComponent(cc.Sprite).spriteFrame;
+                    cc.find('Galapagos/uiLayer/bonus/star_3_glow').getComponent(cc.Sprite).spriteFrame = cc.find('Galapagos/hiddenLayer/star_glow').getComponent(cc.Sprite).spriteFrame;
+                    break;
+                case 4:
+                    cc.find('Galapagos/uiLayer/bonus').getComponent(cc.Animation).play('star_found');
+                    cc.find('Galapagos/uiLayer/bonus/star_4').getComponent(cc.Sprite).spriteFrame = cc.find('Galapagos/hiddenLayer/star').getComponent(cc.Sprite).spriteFrame;
+                    cc.find('Galapagos/uiLayer/bonus/star_4_glow').getComponent(cc.Sprite).spriteFrame = cc.find('Galapagos/hiddenLayer/star_glow').getComponent(cc.Sprite).spriteFrame;
+                    break;
+            }
+
             if (this._emptyTiles == 4)
             {
                 var audioNode = cc.find('Galapagos/audioManager');
@@ -280,6 +314,15 @@ cc.Class({
         else
         {
             this._emptyTiles = 0;
+
+            cc.find('Galapagos/uiLayer/bonus/star_1').getComponent(cc.Sprite).spriteFrame = null;
+            cc.find('Galapagos/uiLayer/bonus/star_1_glow').getComponent(cc.Sprite).spriteFrame = null;
+            cc.find('Galapagos/uiLayer/bonus/star_2').getComponent(cc.Sprite).spriteFrame = null;
+            cc.find('Galapagos/uiLayer/bonus/star_2_glow').getComponent(cc.Sprite).spriteFrame = null;
+            cc.find('Galapagos/uiLayer/bonus/star_3').getComponent(cc.Sprite).spriteFrame = null;
+            cc.find('Galapagos/uiLayer/bonus/star_3_glow').getComponent(cc.Sprite).spriteFrame = null;
+            cc.find('Galapagos/uiLayer/bonus/star_4').getComponent(cc.Sprite).spriteFrame = null;
+            cc.find('Galapagos/uiLayer/bonus/star_4_glow').getComponent(cc.Sprite).spriteFrame = null;
         }
 
         var lbl = cc.find('Galapagos/uiLayer/contadores/contador_bonus/tierraCount').getComponent(cc.Label).string = this._emptyTiles;
@@ -383,9 +426,8 @@ cc.Class({
                 tp = cc.find('Galapagos/gameLayer/animals/tabla_pagos/tp_tiburon_1');
                 var sprite = cc.find('Galapagos/uiLayer/tablaPagos/tiburon/tp_tiburon_1').getComponent(cc.Sprite).spriteFrame = tp.getComponent(cc.Sprite).spriteFrame;
                 this._iTilesTiburon += 1;
-
-                //var festejo = cc.find('Galapagos/uiLayer/festejos').opacity = 255;
                 break;
+
         }
 
         this.checkfullTortugaGalapagos();
@@ -435,6 +477,18 @@ cc.Class({
             var audioNode = cc.find('Galapagos/audioManager');
             this._audioManager = audioNode.getComponent('audioManager');
             this._audioManager.playSweep();
+
+            this.scheduleOnce(function()
+            {
+                var frame_vacio = cc.find('Galapagos/uiLayer/festejos/win_frame').getComponent(cc.Sprite).spriteFrame = cc.find('Galapagos/hiddenLayer/win_frame').getComponent(cc.Sprite).spriteFrame;
+                var animal_vacio = cc.find('Galapagos/uiLayer/festejos/screen_animal').getComponent(cc.Sprite).spriteFrame = cc.find('Galapagos/hiddenLayer/screen_tortugag').getComponent(cc.Sprite).spriteFrame;
+            }, 0.3);
+
+            this.scheduleOnce(function()
+            {
+                var frame_vacio = cc.find('Galapagos/uiLayer/festejos/win_frame').getComponent(cc.Sprite).spriteFrame = null;
+                var animal_vacio = cc.find('Galapagos/uiLayer/festejos/screen_animal').getComponent(cc.Sprite).spriteFrame = null;
+            }, 2);
             cc.log("Tortuga Galápagos Completa!");
 
             this._iTilesTortugaGalapagos = 0;
@@ -447,6 +501,18 @@ cc.Class({
             var audioNode = cc.find('Galapagos/audioManager');
             this._audioManager = audioNode.getComponent('audioManager');
             this._audioManager.playSweep();
+
+            this.scheduleOnce(function()
+            {
+                var frame_vacio = cc.find('Galapagos/uiLayer/festejos/win_frame').getComponent(cc.Sprite).spriteFrame = cc.find('Galapagos/hiddenLayer/win_frame').getComponent(cc.Sprite).spriteFrame;
+                var animal_vacio = cc.find('Galapagos/uiLayer/festejos/screen_animal').getComponent(cc.Sprite).spriteFrame = cc.find('Galapagos/hiddenLayer/screen_tortugam').getComponent(cc.Sprite).spriteFrame;
+            }, 0.3);
+
+            this.scheduleOnce(function()
+            {
+                var frame_vacio = cc.find('Galapagos/uiLayer/festejos/win_frame').getComponent(cc.Sprite).spriteFrame = null;
+                var animal_vacio = cc.find('Galapagos/uiLayer/festejos/screen_animal').getComponent(cc.Sprite).spriteFrame = null;
+            }, 2);
             cc.log("Tortuga Marina Completa!");
 
             this._iTilesTortugaMarina = 0;
@@ -459,6 +525,18 @@ cc.Class({
             var audioNode = cc.find('Galapagos/audioManager');
             this._audioManager = audioNode.getComponent('audioManager');
             this._audioManager.playSweep();
+
+            this.scheduleOnce(function()
+            {
+                var frame_vacio = cc.find('Galapagos/uiLayer/festejos/win_frame').getComponent(cc.Sprite).spriteFrame = cc.find('Galapagos/hiddenLayer/win_frame').getComponent(cc.Sprite).spriteFrame;
+                var animal_vacio = cc.find('Galapagos/uiLayer/festejos/screen_animal').getComponent(cc.Sprite).spriteFrame = cc.find('Galapagos/hiddenLayer/screen_iguana').getComponent(cc.Sprite).spriteFrame;
+            }, 0.3);
+
+            this.scheduleOnce(function()
+            {
+                var frame_vacio = cc.find('Galapagos/uiLayer/festejos/win_frame').getComponent(cc.Sprite).spriteFrame = null;
+                var animal_vacio = cc.find('Galapagos/uiLayer/festejos/screen_animal').getComponent(cc.Sprite).spriteFrame = null;
+            }, 2);
             cc.log("Iguana Completa!");
 
             this._iTilesIguana = 0;
@@ -471,6 +549,19 @@ cc.Class({
             var audioNode = cc.find('Galapagos/audioManager');
             this._audioManager = audioNode.getComponent('audioManager');
             this._audioManager.playSweep();
+            
+            this.scheduleOnce(function()
+            {
+                var frame_vacio = cc.find('Galapagos/uiLayer/festejos/win_frame').getComponent(cc.Sprite).spriteFrame = cc.find('Galapagos/hiddenLayer/win_frame').getComponent(cc.Sprite).spriteFrame;
+                var animal_vacio = cc.find('Galapagos/uiLayer/festejos/screen_animal').getComponent(cc.Sprite).spriteFrame = cc.find('Galapagos/hiddenLayer/screen_foca').getComponent(cc.Sprite).spriteFrame;
+            }, 0.3);
+
+            this.scheduleOnce(function()
+            {
+                var frame_vacio = cc.find('Galapagos/uiLayer/festejos/win_frame').getComponent(cc.Sprite).spriteFrame = null;
+                var animal_vacio = cc.find('Galapagos/uiLayer/festejos/screen_animal').getComponent(cc.Sprite).spriteFrame = null;
+            }, 2);
+
             cc.log("Foca Completa!");
 
             this._iTilesFoca = 0;
@@ -483,6 +574,20 @@ cc.Class({
             var audioNode = cc.find('Galapagos/audioManager');
             this._audioManager = audioNode.getComponent('audioManager');
             this._audioManager.playSweep();
+
+            this.scheduleOnce(function()
+            {
+                var frame_vacio = cc.find('Galapagos/uiLayer/festejos/win_frame').getComponent(cc.Sprite).spriteFrame = cc.find('Galapagos/hiddenLayer/win_frame').getComponent(cc.Sprite).spriteFrame;
+                var animal_vacio = cc.find('Galapagos/uiLayer/festejos/screen_animal').getComponent(cc.Sprite).spriteFrame = cc.find('Galapagos/hiddenLayer/screen_tiburon').getComponent(cc.Sprite).spriteFrame;
+            }, 0.3);
+
+            this.scheduleOnce(function()
+            {
+                var frame_vacio = cc.find('Galapagos/uiLayer/festejos/win_frame').getComponent(cc.Sprite).spriteFrame = null;
+                var animal_vacio = cc.find('Galapagos/uiLayer/festejos/screen_animal').getComponent(cc.Sprite).spriteFrame = null;
+            }, 2);
+
+
             cc.log("Tiburon Completo!");
         
             this._iTilesTiburon = 0;

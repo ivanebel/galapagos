@@ -1,0 +1,30 @@
+{
+  "ver": "1.0.0",
+  "uuid": "b554ad70-cdef-4329-8ddc-f6aab703f18c",
+  "type": "sprite",
+  "wrapMode": "clamp",
+  "filterMode": "bilinear",
+  "subMetas": {
+    "Bonus_animacion_vibora_3_00063": {
+      "ver": "1.0.3",
+      "uuid": "fce63e93-37c0-44d2-b8ca-2cc1bdf0ec9f",
+      "rawTextureUuid": "b554ad70-cdef-4329-8ddc-f6aab703f18c",
+      "trimType": "auto",
+      "trimThreshold": 1,
+      "rotated": false,
+      "offsetX": -1,
+      "offsetY": -1,
+      "trimX": 10,
+      "trimY": 36,
+      "width": 41,
+      "height": 514,
+      "rawWidth": 63,
+      "rawHeight": 584,
+      "borderTop": 0,
+      "borderBottom": 0,
+      "borderLeft": 0,
+      "borderRight": 0,
+      "subMetas": {}
+    }
+  }
+}
