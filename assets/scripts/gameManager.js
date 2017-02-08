@@ -13,18 +13,14 @@ cc.Class({
 
         _waitUserInput: false,
 
-
         _bonus: cc.Node,
 
         remainingChoices: 0,
 
-        _iTilesTortuga: 0,          //bye
         _iTilesTortugaGalapagos: 0,
         _iTilesTortugaMarina: 0,
         _iTilesIguana: 0,
         _iTilesFoca: 0,
-        _iTilesAve: 0,              //bye
-        _iTilesPinguino: 0,         //bye
         _iTilesTiburon: 0,
 
         _uiLayer: cc.Node,
@@ -45,12 +41,22 @@ cc.Class({
             type: cc.SpriteFrame
         },
 
+        _selectedTile: {
+            default: null,
+            type: cc.Node
+        },
+
         _tierras: 0,
         _emptyTiles: 0,
 
         _timesBet: 0,
 
-        _chosenTiles: null
+        _chosenTiles: null,
+
+        _star1: null,
+        _star2: null,
+        _star3: null,
+        _star4: null
 
     },
 
@@ -100,7 +106,7 @@ cc.Class({
     {
         if (customEventData == "bonus")
         {
-            cc.director.loadScene('bonus');
+            cc.find('Galapagos/uiLayer/bonus/bonus_found').getComponent(cc.Animation).play('bonus_found');
         }
 
         if (customEventData == "plusApuesta")
@@ -159,66 +165,85 @@ cc.Class({
 
         var tileComponent = this.getTile(content);
 
+        var nodo;
         
         switch (pos) {
             //Fila A
             case "0":
-                var sprite = cc.find('Galapagos/gameLayer/tiles/row_a/a1').getComponent(cc.Sprite).spriteFrame = tileComponent.spriteFrame;
+                nodo = cc.find('Galapagos/gameLayer/tiles/row_a/a1');
+                nodo.getComponent(cc.Sprite).spriteFrame = tileComponent.spriteFrame;
                 break;
             case "1":
-                var sprite = cc.find('Galapagos/gameLayer/tiles/row_a/a2').getComponent(cc.Sprite).spriteFrame = tileComponent.spriteFrame;
+                nodo = cc.find('Galapagos/gameLayer/tiles/row_a/a2');
+                nodo.getComponent(cc.Sprite).spriteFrame = tileComponent.spriteFrame;
                 break;
             case "2":
-                var sprite = cc.find('Galapagos/gameLayer/tiles/row_a/a3').getComponent(cc.Sprite).spriteFrame = tileComponent.spriteFrame;
+                nodo = cc.find('Galapagos/gameLayer/tiles/row_a/a3');
+                nodo.getComponent(cc.Sprite).spriteFrame = tileComponent.spriteFrame;
                 break;
             case "3":
-                var sprite = cc.find('Galapagos/gameLayer/tiles/row_a/a4').getComponent(cc.Sprite).spriteFrame = tileComponent.spriteFrame;
+                nodo = cc.find('Galapagos/gameLayer/tiles/row_a/a4');
+                nodo.getComponent(cc.Sprite).spriteFrame = tileComponent.spriteFrame;
                 break;
             case "4":
-                var sprite = cc.find('Galapagos/gameLayer/tiles/row_a/a5').getComponent(cc.Sprite).spriteFrame = tileComponent.spriteFrame;
+                nodo = cc.find('Galapagos/gameLayer/tiles/row_a/a5');
+                nodo.getComponent(cc.Sprite).spriteFrame = tileComponent.spriteFrame;
                 break;
             case "5":
-                var sprite = cc.find('Galapagos/gameLayer/tiles/row_a/a6').getComponent(cc.Sprite).spriteFrame = tileComponent.spriteFrame;
+                nodo = cc.find('Galapagos/gameLayer/tiles/row_a/a6');
+                nodo.getComponent(cc.Sprite).spriteFrame = tileComponent.spriteFrame;
                 break;
 
             //Fila B
             case "6":
-                var sprite = cc.find('Galapagos/gameLayer/tiles/row_b/b1').getComponent(cc.Sprite).spriteFrame = tileComponent.spriteFrame;
+                nodo = cc.find('Galapagos/gameLayer/tiles/row_a/b1');
+                nodo.getComponent(cc.Sprite).spriteFrame = tileComponent.spriteFrame;
                 break;
             case "7":
-                var sprite = cc.find('Galapagos/gameLayer/tiles/row_b/b2').getComponent(cc.Sprite).spriteFrame = tileComponent.spriteFrame;
+                nodo = cc.find('Galapagos/gameLayer/tiles/row_a/b2');
+                nodo.getComponent(cc.Sprite).spriteFrame = tileComponent.spriteFrame;
                 break;
             case "8":
-                var sprite = cc.find('Galapagos/gameLayer/tiles/row_b/b3').getComponent(cc.Sprite).spriteFrame = tileComponent.spriteFrame;
+                nodo = cc.find('Galapagos/gameLayer/tiles/row_a/b3');
+                nodo.getComponent(cc.Sprite).spriteFrame = tileComponent.spriteFrame;
                 break;
             case "9":
-                var sprite = cc.find('Galapagos/gameLayer/tiles/row_b/b4').getComponent(cc.Sprite).spriteFrame = tileComponent.spriteFrame;
+                nodo = cc.find('Galapagos/gameLayer/tiles/row_a/b4');
+                nodo.getComponent(cc.Sprite).spriteFrame = tileComponent.spriteFrame;
                 break;
             case "10":
-                var sprite = cc.find('Galapagos/gameLayer/tiles/row_b/b5').getComponent(cc.Sprite).spriteFrame = tileComponent.spriteFrame;
+                nodo = cc.find('Galapagos/gameLayer/tiles/row_a/b5');
+                nodo.getComponent(cc.Sprite).spriteFrame = tileComponent.spriteFrame;
                 break;
             case "11":
-                var sprite = cc.find('Galapagos/gameLayer/tiles/row_b/b6').getComponent(cc.Sprite).spriteFrame = tileComponent.spriteFrame;
+                nodo = cc.find('Galapagos/gameLayer/tiles/row_a/b6');
+                nodo.getComponent(cc.Sprite).spriteFrame = tileComponent.spriteFrame;
                 break;
 
             //Fila C
             case "12":
-                var sprite = cc.find('Galapagos/gameLayer/tiles/row_c/c1').getComponent(cc.Sprite).spriteFrame = tileComponent.spriteFrame;
+                nodo = cc.find('Galapagos/gameLayer/tiles/row_a/c1');
+                nodo.getComponent(cc.Sprite).spriteFrame = tileComponent.spriteFrame;
                 break;
             case "13":
-                var sprite = cc.find('Galapagos/gameLayer/tiles/row_c/c2').getComponent(cc.Sprite).spriteFrame = tileComponent.spriteFrame;
+                nodo = cc.find('Galapagos/gameLayer/tiles/row_a/c2');
+                nodo.getComponent(cc.Sprite).spriteFrame = tileComponent.spriteFrame;
                 break;
             case "14":
-                var sprite = cc.find('Galapagos/gameLayer/tiles/row_c/c3').getComponent(cc.Sprite).spriteFrame = tileComponent.spriteFrame;
+                nodo = cc.find('Galapagos/gameLayer/tiles/row_a/c3');
+                nodo.getComponent(cc.Sprite).spriteFrame = tileComponent.spriteFrame;
                 break;
             case "15":
-                var sprite = cc.find('Galapagos/gameLayer/tiles/row_c/c4').getComponent(cc.Sprite).spriteFrame = tileComponent.spriteFrame;
+                nodo = cc.find('Galapagos/gameLayer/tiles/row_a/c4');
+                nodo.getComponent(cc.Sprite).spriteFrame = tileComponent.spriteFrame;
                 break;
             case "16":
-                var sprite = cc.find('Galapagos/gameLayer/tiles/row_c/c5').getComponent(cc.Sprite).spriteFrame = tileComponent.spriteFrame;
+                nodo = cc.find('Galapagos/gameLayer/tiles/row_a/c5');
+                nodo.getComponent(cc.Sprite).spriteFrame = tileComponent.spriteFrame;
                 break;
             case "17":
-                var sprite = cc.find('Galapagos/gameLayer/tiles/row_c/c6').getComponent(cc.Sprite).spriteFrame = tileComponent.spriteFrame;
+                nodo = cc.find('Galapagos/gameLayer/tiles/row_a/c6');
+                nodo.getComponent(cc.Sprite).spriteFrame = tileComponent.spriteFrame;
                 break;
 
             //Fila D
@@ -263,6 +288,69 @@ cc.Class({
 
         }
 
+        if (content == "E")
+        {
+            var starNode = cc.find('Galapagos/uiLayer/bonus/star_1');
+            var starGlowNode = cc.find('Galapagos/uiLayer/bonus/star_1_glow');
+            var starAnim = cc.find('Galapagos/uiLayer/bonus/star_found');
+
+            var posX = nodo.getPositionX();
+            var posY = nodo.getPositionY();
+
+            cc.log("PosX=" + posX + " PosY=" + posY);
+
+            switch(this._emptyTiles)
+            {
+                case 1:
+                    this._star1 = cc.find('Galapagos/uiLayer/bonus/star_1');
+                    starGlowNode = cc.find('Galapagos/uiLayer/bonus/star_1_glow');
+
+                    this._star1.setPositionX(posX);
+                    this._star1.setPositionY(posY);
+                    this._star1.getComponent(cc.Sprite).spriteFrame = cc.find('Galapagos/hiddenLayer/star').getComponent(cc.Sprite).spriteFrame;
+                    break;
+                case 2:
+                    starNode = cc.find('Galapagos/uiLayer/bonus/star_2');
+                    starGlowNode = cc.find('Galapagos/uiLayer/bonus/star_2_glow');
+                    break;
+                case 3:
+                    starNode = cc.find('Galapagos/uiLayer/bonus/star_3');
+                    starGlowNode = cc.find('Galapagos/uiLayer/bonus/star_3_glow');
+                    break;
+                case 4:
+                    starNode = cc.find('Galapagos/uiLayer/bonus/star_4');
+                    starGlowNode = cc.find('Galapagos/uiLayer/bonus/star_4_glow');
+                    break;
+            }
+
+            //starNode.setPositionX(posX);
+            //starNode.setPositionY(posY);
+            //starNode.getComponent(cc.Sprite).spriteFrame = cc.find('Galapagos/hiddenLayer/star').getComponent(cc.Sprite).spriteFrame;
+
+            starGlowNode.setPositionX(posX);
+            starGlowNode.setPositionY(posY);
+            starGlowNode.getComponent(cc.Sprite).spriteFrame = cc.find('Galapagos/hiddenLayer/star_glow').getComponent(cc.Sprite).spriteFrame;
+
+            starAnim.setPositionX(posX);
+            starAnim.setPositionY(posY);
+            starAnim.getComponent(cc.Animation).play('star_found');
+            
+
+            if (this._emptyTiles == 4)
+            {
+                var audioNode = cc.find('Galapagos/audioManager');
+                this._audioManager = audioNode.getComponent('audioManager');
+                this._audioManager.playSweep();
+
+                //cc.director.loadScene('bonus');
+                var bonusNode = cc.find('Galapagos/uiLayer/bonus/bonus_found');
+                bonusNode.setPositionX(this._star1.getPositionX());
+                bonusNode.setPositionY(this._star1.getPositionY());
+                bonusNode.getComponent(cc.Animation).play('bonus_found');
+            }
+
+        }
+
     },
 
     getTile (str)
@@ -302,14 +390,7 @@ cc.Class({
                     break;
             }
 
-            if (this._emptyTiles == 4)
-            {
-                var audioNode = cc.find('Galapagos/audioManager');
-                this._audioManager = audioNode.getComponent('audioManager');
-                this._audioManager.playSweep();
-
-                cc.director.loadScene('bonus');
-            }
+            
         }
         else
         {

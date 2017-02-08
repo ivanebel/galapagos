@@ -1,0 +1,30 @@
+{
+  "ver": "1.0.0",
+  "uuid": "2ac73681-497d-4d19-b060-1073e1e21293",
+  "type": "sprite",
+  "wrapMode": "clamp",
+  "filterMode": "bilinear",
+  "subMetas": {
+    "Festejo Particulas 02___00031": {
+      "ver": "1.0.3",
+      "uuid": "f4ea4b86-9b76-42a6-9787-cb2cc20b8869",
+      "rawTextureUuid": "2ac73681-497d-4d19-b060-1073e1e21293",
+      "trimType": "auto",
+      "trimThreshold": 1,
+      "rotated": false,
+      "offsetX": 0,
+      "offsetY": -40.5,
+      "trimX": 0,
+      "trimY": 81,
+      "width": 1920,
+      "height": 999,
+      "rawWidth": 1920,
+      "rawHeight": 1080,
+      "borderTop": 0,
+      "borderBottom": 0,
+      "borderLeft": 0,
+      "borderRight": 0,
+      "subMetas": {}
+    }
+  }
+}
