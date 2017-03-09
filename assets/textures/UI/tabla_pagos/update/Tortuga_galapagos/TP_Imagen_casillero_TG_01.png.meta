@@ -1,0 +1,30 @@
+{
+  "ver": "1.0.0",
+  "uuid": "779a6ee6-30b0-4862-9df6-a61157539868",
+  "type": "sprite",
+  "wrapMode": "clamp",
+  "filterMode": "bilinear",
+  "subMetas": {
+    "TP_Imagen_casillero_TG_01": {
+      "ver": "1.0.3",
+      "uuid": "5514311a-6c78-4410-892b-cb77e169fa29",
+      "rawTextureUuid": "779a6ee6-30b0-4862-9df6-a61157539868",
+      "trimType": "auto",
+      "trimThreshold": 1,
+      "rotated": false,
+      "offsetX": 0,
+      "offsetY": 0,
+      "trimX": 0,
+      "trimY": 0,
+      "width": 59,
+      "height": 59,
+      "rawWidth": 59,
+      "rawHeight": 59,
+      "borderTop": 0,
+      "borderBottom": 0,
+      "borderLeft": 0,
+      "borderRight": 0,
+      "subMetas": {}
+    }
+  }
+}

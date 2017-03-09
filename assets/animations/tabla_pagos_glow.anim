@@ -1,0 +1,45 @@
+{
+  "__type__": "cc.AnimationClip",
+  "_name": "tabla_pagos_glow",
+  "_objFlags": 0,
+  "_rawFiles": null,
+  "_duration": 0.22727272727272727,
+  "sample": 44,
+  "speed": 0.5,
+  "wrapMode": 2,
+  "curveData": {
+    "paths": {
+      "tp_numbers_glow": {
+        "comps": {
+          "cc.Sprite": {
+            "spriteFrame": [
+              {
+                "frame": 0,
+                "value": {
+                  "__uuid__": "0ff8cd16-8594-4e81-a6b0-1170d7f737b1"
+                }
+              }
+            ]
+          }
+        },
+        "props": {
+          "opacity": [
+            {
+              "frame": 0,
+              "value": 80
+            },
+            {
+              "frame": 0.11363636363636363,
+              "value": 255
+            },
+            {
+              "frame": 0.22727272727272727,
+              "value": 80
+            }
+          ]
+        }
+      }
+    }
+  },
+  "events": []
+}

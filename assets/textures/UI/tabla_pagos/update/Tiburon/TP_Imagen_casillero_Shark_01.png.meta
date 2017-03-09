@@ -1,0 +1,30 @@
+{
+  "ver": "1.0.0",
+  "uuid": "77f0ef8a-7f89-4339-8f99-62be950b8c70",
+  "type": "sprite",
+  "wrapMode": "clamp",
+  "filterMode": "bilinear",
+  "subMetas": {
+    "TP_Imagen_casillero_Shark_01": {
+      "ver": "1.0.3",
+      "uuid": "3cf14c1e-8417-4873-97c1-458d02bd0b25",
+      "rawTextureUuid": "77f0ef8a-7f89-4339-8f99-62be950b8c70",
+      "trimType": "auto",
+      "trimThreshold": 1,
+      "rotated": false,
+      "offsetX": 0,
+      "offsetY": 0,
+      "trimX": 0,
+      "trimY": 0,
+      "width": 58,
+      "height": 59,
+      "rawWidth": 58,
+      "rawHeight": 59,
+      "borderTop": 0,
+      "borderBottom": 0,
+      "borderLeft": 0,
+      "borderRight": 0,
+      "subMetas": {}
+    }
+  }
+}

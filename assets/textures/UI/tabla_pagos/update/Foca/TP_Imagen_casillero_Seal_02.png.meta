@@ -1,0 +1,30 @@
+{
+  "ver": "1.0.0",
+  "uuid": "3a441811-1406-4d46-8e16-dc8fb2f849d7",
+  "type": "sprite",
+  "wrapMode": "clamp",
+  "filterMode": "bilinear",
+  "subMetas": {
+    "TP_Imagen_casillero_Seal_02": {
+      "ver": "1.0.3",
+      "uuid": "fe84fc4f-e5ef-4e31-9255-83740432b8cc",
+      "rawTextureUuid": "3a441811-1406-4d46-8e16-dc8fb2f849d7",
+      "trimType": "auto",
+      "trimThreshold": 1,
+      "rotated": false,
+      "offsetX": 0,
+      "offsetY": 0,
+      "trimX": 0,
+      "trimY": 0,
+      "width": 59,
+      "height": 59,
+      "rawWidth": 59,
+      "rawHeight": 59,
+      "borderTop": 0,
+      "borderBottom": 0,
+      "borderLeft": 0,
+      "borderRight": 0,
+      "subMetas": {}
+    }
+  }
+}

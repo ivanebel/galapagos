@@ -1,0 +1,30 @@
+{
+  "ver": "1.0.0",
+  "uuid": "96ce1f0e-2309-4e4c-84f3-68e50ca4ed9f",
+  "type": "sprite",
+  "wrapMode": "clamp",
+  "filterMode": "bilinear",
+  "subMetas": {
+    "Glow Gral 03_00001": {
+      "ver": "1.0.3",
+      "uuid": "babda14b-1c72-4dd6-abcd-0f84bf4f9a55",
+      "rawTextureUuid": "96ce1f0e-2309-4e4c-84f3-68e50ca4ed9f",
+      "trimType": "auto",
+      "trimThreshold": 1,
+      "rotated": false,
+      "offsetX": 960,
+      "offsetY": -540,
+      "trimX": 1920,
+      "trimY": 1080,
+      "width": 0,
+      "height": 0,
+      "rawWidth": 1920,
+      "rawHeight": 1080,
+      "borderTop": 0,
+      "borderBottom": 0,
+      "borderLeft": 0,
+      "borderRight": 0,
+      "subMetas": {}
+    }
+  }
+}

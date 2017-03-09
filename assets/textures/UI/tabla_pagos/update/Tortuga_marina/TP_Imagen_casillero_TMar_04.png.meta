@@ -1,0 +1,30 @@
+{
+  "ver": "1.0.0",
+  "uuid": "e30cf400-8f75-480a-b627-d0c530395096",
+  "type": "sprite",
+  "wrapMode": "clamp",
+  "filterMode": "bilinear",
+  "subMetas": {
+    "TP_Imagen_casillero_TMar_04": {
+      "ver": "1.0.3",
+      "uuid": "0ee95325-2c0e-4f8f-90e8-bb244b7145a7",
+      "rawTextureUuid": "e30cf400-8f75-480a-b627-d0c530395096",
+      "trimType": "auto",
+      "trimThreshold": 1,
+      "rotated": false,
+      "offsetX": 0,
+      "offsetY": 0,
+      "trimX": 0,
+      "trimY": 0,
+      "width": 58,
+      "height": 59,
+      "rawWidth": 58,
+      "rawHeight": 59,
+      "borderTop": 0,
+      "borderBottom": 0,
+      "borderLeft": 0,
+      "borderRight": 0,
+      "subMetas": {}
+    }
+  }
+}

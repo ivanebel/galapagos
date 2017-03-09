@@ -1,0 +1,30 @@
+{
+  "ver": "1.0.0",
+  "uuid": "a20dc652-31ee-4810-8138-ec19eaa06544",
+  "type": "sprite",
+  "wrapMode": "clamp",
+  "filterMode": "bilinear",
+  "subMetas": {
+    "TP_Imagen_casillero_Iguana_03": {
+      "ver": "1.0.3",
+      "uuid": "5ed81679-b5f2-4f93-ad5f-1afcc2657736",
+      "rawTextureUuid": "a20dc652-31ee-4810-8138-ec19eaa06544",
+      "trimType": "auto",
+      "trimThreshold": 1,
+      "rotated": false,
+      "offsetX": 0,
+      "offsetY": 0,
+      "trimX": 0,
+      "trimY": 0,
+      "width": 58,
+      "height": 60,
+      "rawWidth": 58,
+      "rawHeight": 60,
+      "borderTop": 0,
+      "borderBottom": 0,
+      "borderLeft": 0,
+      "borderRight": 0,
+      "subMetas": {}
+    }
+  }
+}

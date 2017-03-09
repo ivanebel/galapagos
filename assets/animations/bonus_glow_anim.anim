@@ -1,0 +1,59 @@
+{
+  "__type__": "cc.AnimationClip",
+  "_name": "bonus_glow_anim",
+  "_objFlags": 0,
+  "_rawFiles": null,
+  "_duration": 0.4444444444444444,
+  "sample": 45,
+  "speed": 1,
+  "wrapMode": 2,
+  "curveData": {
+    "paths": {
+      "b_de_bonus_glow": {
+        "comps": {
+          "cc.Sprite": {
+            "spriteFrame": [
+              {
+                "frame": 0,
+                "value": {
+                  "__uuid__": "ae4badc4-dd7b-4d1d-9f5f-c2f99ddfbee6"
+                }
+              }
+            ]
+          }
+        },
+        "props": {
+          "opacity": [
+            {
+              "frame": 0,
+              "value": 80
+            },
+            {
+              "frame": 0.2222222222222222,
+              "value": 255
+            },
+            {
+              "frame": 0.4444444444444444,
+              "value": 80
+            }
+          ]
+        }
+      },
+      "b_de_bonus": {
+        "comps": {
+          "cc.Sprite": {
+            "spriteFrame": [
+              {
+                "frame": 0,
+                "value": {
+                  "__uuid__": "269b3129-cd6c-487e-99ea-b10e786896ca"
+                }
+              }
+            ]
+          }
+        }
+      }
+    }
+  },
+  "events": []
+}
