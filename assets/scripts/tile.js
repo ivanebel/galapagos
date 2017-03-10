@@ -37,7 +37,7 @@ cc.Class({
     },
 
     init: function ( gameManager ) {
-        this._manager = gameManager;
+        this._gameManager = gameManager;
         this._star = this.node.getChildByName('star');
         this._animal = this.node.getChildByName('animal');
         
@@ -49,7 +49,7 @@ cc.Class({
 
     setMysticIndex: function ( i ) {
         this.mysticIndex = i;
-        this.node.getChildByName('lblIndex').getComponent(cc.Label).string = this._manager._fakeTicket[i];
+        this.node.getChildByName('lblIndex').getComponent(cc.Label).string = this._gameManager._fakeTicket[i];
     },
 
     setAnimal: function ( spriteAnimal )
@@ -110,11 +110,11 @@ cc.Class({
     //console.log('touch bloque: ' + this.lin + ', ' + this.col + '  content: '+ this.content);
     //depende del estado del bloque es lo que hacemos...
     //pero quiza solo pasamos el mensaje al GameManager para que resuelva...
-        this._manager.userChoice(this);
+        this._gameManager.userChoice(this);
     
-        if (this._manager._waitUserInput === true) 
+        if (this._gameManager._waitUserInput === true) 
         { 
-            if (this._manager._activeLine === this.row ) 
+            if (this._gameManager._activeLine === this.row ) 
             {
                 cc.audioEngine.playEffect(this.audio_touch);
             }

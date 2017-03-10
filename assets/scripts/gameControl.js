@@ -4,7 +4,6 @@ var cGameControl =
     activeScene: null,
     activeComp: null,
     
-    
     _uiLayer: null,
     _uiComp: null,
     _waitUserInput: false,
@@ -38,6 +37,8 @@ var cGameControl =
     {
         console.log('Initializing GameControl');
         
+        this._fakeTicket = this.shuffle();
+
         if ( aUiLayer != null ) {
             //Se recibe un nodo que representa la UI y se hace persistente para poder reutilizarlo
             this._uiLayer = aUiLayer; 
@@ -68,7 +69,7 @@ var cGameControl =
         cc.director.preloadScene('bonus');
 
         //communicator events
-        this._fakeTicket = this.shuffle();
+        
         cc.log(this._fakeTicket);
 
         cc.director.loadScene('galapagos-main', this.onGalapagosLoaded.bind(this) );   
@@ -126,7 +127,7 @@ var cGameControl =
         
     },
 
-    onStartBonusLevel: function ( jsonData ) 
+    onStartBonusLevel: function (  ) 
     {
         console.log('Recibimos StartBonusLevel');
 
@@ -140,6 +141,7 @@ var cGameControl =
     startBonus: function () 
     {
         cc.director.loadScene('bonus', this.onBonusLoaded.bind(this) );
+
     },
 
     //callback de carga de Bonus
@@ -149,8 +151,11 @@ var cGameControl =
         console.log('Bonus cargado....');
         
         this.activeScene = cc.director.getScene();
-        this.activeComp = this.activeScene.getChildByName('Bonus').getComponent('bonus'); 
+        this.activeComp = this.activeScene.getChildByName('Bonus').getComponent('initBonus'); 
         this.activeComp.init( this );
+
+        //var ui_anim = cc.find('uiLayer').getComponent(cc.Animation);
+        //var ui_animstate = ui_anim.stop('ui_glow_anim');
         
     },  
         
@@ -182,6 +187,11 @@ var cGameControl =
     //Usuario ha seleccionado un box
     userChoice: function ( aTile ) {
         
+        if (this._uiComp._gameStarted == false)
+        {
+            return;
+        }
+
         this._selectedBox = aTile;
         cc.log('selected: ' + aTile.node.name);
         cc.log('MysticIndex: ' + aTile.mysticIndex);
@@ -199,6 +209,7 @@ var cGameControl =
             this._chosen_tiles_array.push(aTile);
             this.showTileContent(aTile);
         }
+        
         
 
         /** 
@@ -249,17 +260,20 @@ var cGameControl =
                     superNode.runAction(
                         cc.sequence(
                             cc.delayTime(0.2),
-                            cc.callFunc( function() {this._empty_tiles_array[0].playBonusFound(); this._empty_tiles_array[0].doByeByeStar();}, this ), cc.delayTime(0.5),
-                            cc.callFunc( function() {this._empty_tiles_array[1].playBonusFound(); this._empty_tiles_array[1].doByeByeStar();}, this ), cc.delayTime(0.5),
-                            cc.callFunc( function() {this._empty_tiles_array[2].playBonusFound(); this._empty_tiles_array[2].doByeByeStar();}, this ), cc.delayTime(0.5),
-                            cc.callFunc( function() {this._empty_tiles_array[3].playBonusFound(); this._empty_tiles_array[3].doByeByeStar();}, this ), cc.delayTime(1.5),
+                            cc.callFunc( function() {this._empty_tiles_array[0].playBonusFound(); this._empty_tiles_array[0].doByeByeStar();}, this ), cc.delayTime(0.3),
+                            cc.callFunc( function() {this._empty_tiles_array[1].playBonusFound(); this._empty_tiles_array[1].doByeByeStar();}, this ), cc.delayTime(0.3),
+                            cc.callFunc( function() {this._empty_tiles_array[2].playBonusFound(); this._empty_tiles_array[2].doByeByeStar();}, this ), cc.delayTime(0.3),
+                            cc.callFunc( function() {this._empty_tiles_array[3].playBonusFound(); this._empty_tiles_array[3].doByeByeStar();}, this ), cc.delayTime(0.5),
                             cc.callFunc( function() {this._empty_tiles_array[0].playBonusGlow(); 
                                                      this._empty_tiles_array[1].playBonusGlow(); 
                                                      this._empty_tiles_array[2].playBonusGlow(); 
                                                      this._empty_tiles_array[3].playBonusGlow(); }, this ), cc.delayTime(0.2),
-                            cc.callFunc( function() {bonusTitleAnim.play('bonus_mensaje'); }, this )
+                            cc.callFunc( function() {bonusTitleAnim.play('bonus_mensaje'); }, this ), cc.delayTime(0.5),
+                            cc.callFunc( function() {this.onStartBonusLevel();}, this)
                         )
                     );
+
+                    
                     
                 }
             }
@@ -483,13 +497,15 @@ var cGameControl =
 
     actualizarContadores( prize )
     {
-        this._iCreditos += this._iApuesta * prize;
-
-        var lblPrize = this._uiLayer.getChildByName('counters').getChildByName('lblPrize').getComponent(cc.Label);
-        lblPrize.string = this._iApuesta * prize;
+        var bet = this._uiComp._iBet;
+        var iPrize = this._uiComp._iPrize;
+        var creditsWon = prize * bet;
         
-        var lblCredits = this._uiLayer.getChildByName('counters').getChildByName('lblCredits').getComponent(cc.Label);
-        lblCredits.string = this._iCreditos;
+        var lblPrize = this._uiLayer.getChildByName('counters').getChildByName('lblPrize').getComponent(cc.Label);
+        lblPrize.string = (iPrize + creditsWon);
+        
+        //var lblCredits = this._uiLayer.getChildByName('counters').getChildByName('lblCredits').getComponent(cc.Label);
+        //lblCredits.string = this._iCreditos;
     },
 
     showEmptyTile: function ( aTile )

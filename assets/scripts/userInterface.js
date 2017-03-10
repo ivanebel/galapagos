@@ -5,11 +5,18 @@ cc.Class({
         _bonusLabel: cc.Node,
         _winPrizeLayer: cc.Node,
 
+        _gameStarted: false,
+
         _lblMoney: cc.Label,
         _lblCredits: cc.Label,
         _lblBet: cc.Label,
         _lblPrize: cc.Label,
         _lblBonus: cc.Label,
+
+        _iCredits: 10000,
+        _iBet: 0,
+        _iBetValue: 0,
+        _iPrize: 0,
 
         _btnAssistant: null,
         _btnBet: null,
@@ -22,7 +29,9 @@ cc.Class({
         _btnCashout: null,
         _btnLeave: null,
         _btnStartGame: null,
-        _btnTicket: null
+        _btnTicket: null,
+
+        _ui_anim: null
     },
 
     // use this for initialization
@@ -36,6 +45,12 @@ cc.Class({
         
         var self = this;
 
+        //this._ui_anim = cc.find('uiLayer').getComponent(cc.Animation);
+        this._iBetValue = 10;
+        this._iCredits = 10000;
+
+        this._gameStarted = false;
+
         var listener = {
             event: cc.EventListener.KEYBOARD,
             onKeyPressed: function (keyCode, event) {
@@ -44,6 +59,8 @@ cc.Class({
                 
                 switch (keyCode) {
                     case cc.KEY.b: 
+                        //this._ui_anim.stop('ui_glow_anim');
+                        
                         cc.director.loadScene('bonus'); 
                         break;
                     case cc.KEY.l: 
@@ -82,15 +99,17 @@ cc.Class({
         this._btnMaxBet = this.node.getChildByName('buttons').getChildByName('btnBets').getChildByName('btnMaxBet').getComponent(cc.Button);
         this._btnClearBet = this.node.getChildByName('buttons').getChildByName('btnBets').getChildByName('btnClearBet').getComponent(cc.Button);
         
-        this._btnStartGame = this.node.getChildByName('buttons').getChildByName('btnPlay').getComponent(cc.Button);
-        //this._btnCashout = this.node.getChildByName('btnCashout').getComponent(cc.Button);
+        this._btnStartGame = this.node.getChildByName('buttons').getChildByName('btnPlay').getChildByName('bPlay').getComponent(cc.Button);
+        this._btnStartGame.interactable = true;
+
+        this._btnCashout = this.node.getChildByName('buttons').getChildByName('btnCashout').getChildByName('bCashout').getComponent(cc.Button);
         this._btnLeave = this.node.getChildByName('buttons').getChildByName('btnMenu').getComponent(cc.Button);
         //this._btnTicket =
 
-        this._btnBet1.interactable = false;
-        this._btnBet2.interactable = false;
-        this._btnBet3.interactable = false;
-        this._btnBet4.interactable = false;
+        //this._btnBet1.interactable = false;
+        //this._btnBet2.interactable = false;
+        //this._btnBet3.interactable = false;
+        //this._btnBet4.interactable = false;
         
         /** 
         //communicator
@@ -168,21 +187,112 @@ cc.Class({
 
     btnBetClick : function(event, customEventData) {
         console.log('Boton de apuesta....' + customEventData );
-        communicator.sendMessage( 'Bet {"data":{"bet":'+customEventData+'}}' );        
+        //communicator.sendMessage( 'Bet {"data":{"bet":'+customEventData+'}}' );        
 
         //this.node.getChildByName('tmp').getComponent(cc.Label).string = 'Apuesta:' + customEventData;
+        switch (customEventData)
+        {
+            case "bBet1":
+                var bet = this._iBetValue * 1;
+                this._iBet = this._iBet + bet;
+                this._iCredits = this._iCredits - bet;
+                break;
+            case "bBet2":
+                var bet = this._iBetValue * 5;
+                this._iBet = this._iBet + bet;
+                this._iCredits = this._iCredits - bet;
+                break;
+            case "bBet3":
+                var bet = this._iBetValue * 10;
+                this._iBet = this._iBet + bet;
+                this._iCredits = this._iCredits - bet;
+                break;
+            case "bBet4":
+                var bet = this._iBetValue * 25;
+                this._iBet = this._iBet + bet;
+                this._iCredits = this._iCredits - bet;
+                break;
+        }
+
+        this._lblBet.string = this._iBet;
+        this._lblCredits.string = this._iCredits;
+
+        if(this._iBet > 0)
+        {
+            this._btnStartGame.interactable = true;
+        }
+
         
     },
     
     btnStartGameClick: function () {
         console.log('Boton Jugar...');
-        communicator.sendMessage( 'ClearBoard {"data":{}}' );        
+        //communicator.sendMessage( 'ClearBoard {"data":{}}' );
+
+        this.node.getChildByName('buttons').getChildByName('btnPlay').active = false;
+        this.node.getChildByName('buttons').getChildByName('btnCashout').active = true;
+        this._btnCashout.interactable = false;
+
+        this._btnBet1.interactable = false;
+        this._btnBet2.interactable = false;
+        this._btnBet3.interactable = false;
+        this._btnBet4.interactable = false;
+
+        this._btnMaxBet.interactable = false;
+        this._btnClearBet.interactable = false;
+
+        if (this._iBet == 0)
+        {
+            this._iBet = this._iBetValue;
+            this._lblBet.string = this._iBet;
+            this._iCredits = this._iCredits - this._iBet;
+            this._lblCredits.string = this._iCredits;
+        }
+
+        this._gameStarted = true;
+
     },
 
     btnCashoutClick: function () {
         console.log('Boton Cobrar...');
-        communicator.sendMessage( 'Cashout {"data":{}}' );        
+        //communicator.sendMessage( 'Cashout {"data":{}}' );        
     },
 
+    btnClearBetClick: function() {
+        console.log('Limpio apuesta');
+        this._iBet = 0;
+        this._lblBet.string = this._iBet;
+        this._iCredits = 10000;
+        this._lblCredits = this._iCredits;
+
+        this._btnStartGame.interactable = false;
+    },
+
+    btnReglasShow: function()
+    {
+        cc.find('uiLayer/reglas').getComponent(cc.Animation).play('reglas_show_anim');
+    },
+
+    btnReglasBack: function()
+    {
+        cc.find('uiLayer/reglas').getComponent(cc.Animation).play('reglas_hide_anim');
+    }
+/*
+    btnGoToBonus: function()
+    {
+        cc.director.loadScene('bonus', this.onBonusLoaded.bind(this) );
+    },
+
+    //callback de carga de galapagos-main
+    onBonusLoaded: function () 
+    {
+        //Luego de que se carga el outside llamamos a comenzar el juego...
+        this.activeScene =  cc.director.getScene();
+        this.activeComp = this.activeScene.getChildByName('Bonus').getComponent('initBonus'); 
+        this.activeComp.init( this );
+        
+
+    },
+*/
     
 });
