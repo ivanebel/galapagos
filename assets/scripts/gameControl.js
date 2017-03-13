@@ -33,6 +33,8 @@ var cGameControl =
 
     _fakeTicket: null,
 
+    _audioManager: null,
+
     init: function ( aUiLayer ) 
     {
         console.log('Initializing GameControl');
@@ -44,7 +46,9 @@ var cGameControl =
             this._uiLayer = aUiLayer; 
             //Iniciamos el componente de la UI
             this._uiComp = this._uiLayer.getComponent('userInterface');
-            this._uiComp.init();
+            this._uiComp.init( this );
+
+            this._audioManager = this._uiLayer.getComponent('audioManager');
 
             //Lo hacemos persistente para poder reutilizarlo
             cc.game.addPersistRootNode( this._uiLayer );
@@ -65,6 +69,8 @@ var cGameControl =
 
         }
 
+        
+
         //cc.director.preloadScene('galapagos-main');
         cc.director.preloadScene('bonus');
 
@@ -73,6 +79,7 @@ var cGameControl =
         cc.log(this._fakeTicket);
 
         cc.director.loadScene('galapagos-main', this.onGalapagosLoaded.bind(this) );   
+        
     },
 
     //Respondemos al mensaje de initialData
@@ -208,6 +215,7 @@ var cGameControl =
             // Algun sonido?
             this._chosen_tiles_array.push(aTile);
             this.showTileContent(aTile);
+            this._audioManager.playClick();
         }
         
         
@@ -269,7 +277,7 @@ var cGameControl =
                                                      this._empty_tiles_array[2].playBonusGlow(); 
                                                      this._empty_tiles_array[3].playBonusGlow(); }, this ), cc.delayTime(0.2),
                             cc.callFunc( function() {bonusTitleAnim.play('bonus_mensaje'); }, this ), cc.delayTime(0.5),
-                            cc.callFunc( function() {this.onStartBonusLevel();}, this)
+                            cc.callFunc( function() { this.onStartBonusLevel();}, this)
                         )
                     );
 
@@ -424,6 +432,8 @@ var cGameControl =
         {
             var animalSF =  cc.find('Galapagos/hiddenLayer/festejos/screen_tortugag').getComponent(cc.Sprite).spriteFrame;
 
+            this._audioManager.playSweep();
+
             var festejoLayerNode = cc.find('Galapagos/uiLayer/festejoLayer').getComponent('animalFrames');
             festejoLayerNode.init(this);
             festejoLayerNode.drawFrame(animalSF);                    
@@ -438,6 +448,8 @@ var cGameControl =
         if (this._iTilesTortugaMarina == 4)
         {
             var animalSF =  cc.find('Galapagos/hiddenLayer/festejos/screen_tortugam').getComponent(cc.Sprite).spriteFrame;
+
+            this._audioManager.playSweep();
 
             var festejoLayerNode = cc.find('Galapagos/uiLayer/festejoLayer').getComponent('animalFrames');
             festejoLayerNode.init(this);
@@ -454,6 +466,8 @@ var cGameControl =
         {
             var animalSF =  cc.find('Galapagos/hiddenLayer/festejos/screen_iguana').getComponent(cc.Sprite).spriteFrame;
 
+            this._audioManager.playSweep();
+
             var festejoLayerNode = cc.find('Galapagos/uiLayer/festejoLayer').getComponent('animalFrames');
             festejoLayerNode.init(this);
             festejoLayerNode.drawFrame(animalSF);                    
@@ -469,6 +483,8 @@ var cGameControl =
         {
             var animalSF =  cc.find('Galapagos/hiddenLayer/festejos/screen_foca').getComponent(cc.Sprite).spriteFrame;
 
+            this._audioManager.playSweep();
+
             var festejoLayerNode = cc.find('Galapagos/uiLayer/festejoLayer').getComponent('animalFrames');
             festejoLayerNode.init(this);
             festejoLayerNode.drawFrame(animalSF);                    
@@ -483,6 +499,8 @@ var cGameControl =
         if (this._iTilesTiburon == 1)
         {
             var animalSF =  cc.find('Galapagos/hiddenLayer/festejos/screen_tiburon').getComponent(cc.Sprite).spriteFrame;
+
+            this._audioManager.playSweep();
 
             var festejoLayerNode = cc.find('Galapagos/uiLayer/festejoLayer').getComponent('animalFrames');
             festejoLayerNode.init(this);

@@ -30,8 +30,11 @@ cc.Class({
         _btnLeave: null,
         _btnStartGame: null,
         _btnTicket: null,
+        _btnRules: null,
 
-        _ui_anim: null
+        _ui_anim: null,
+
+        _gameControl: null
     },
 
     // use this for initialization
@@ -39,11 +42,13 @@ cc.Class({
 
     },
 
-    init: function()
+    init: function( aGameControl )
     {
         console.log('Interface Init...' );
         
         var self = this;
+
+        this._gameControl = aGameControl;
 
         //this._ui_anim = cc.find('uiLayer').getComponent(cc.Animation);
         this._iBetValue = 10;
@@ -58,13 +63,14 @@ cc.Class({
                 console.log('Interface keyDown: ' + keyCode);
                 
                 switch (keyCode) {
-                    case cc.KEY.b: 
-                        //this._ui_anim.stop('ui_glow_anim');
-                        
-                        cc.director.loadScene('bonus'); 
+                    case cc.KEY.b:
+                        //cc.director.loadScene('bonus'); 
+                        this._gameControl.startBonus();
                         break;
-                    case cc.KEY.l: 
-                        cc.director.loadScene('galapagos-main'); 
+                    case cc.KEY.g: 
+                        //cc.director.loadScene('galapagos-main');
+                        //cc.director.loadScene('galapagos-main', this._gameControl.onGalapagosLoaded.bind( this._gameControl ) ); 
+                        this._gameControl.init(this);
                         break;
                     case cc.KEY.e: 
                         cc.game.pause(); 
@@ -104,7 +110,8 @@ cc.Class({
 
         this._btnCashout = this.node.getChildByName('buttons').getChildByName('btnCashout').getChildByName('bCashout').getComponent(cc.Button);
         this._btnLeave = this.node.getChildByName('buttons').getChildByName('btnMenu').getComponent(cc.Button);
-        //this._btnTicket =
+
+        this._btnRules = this.node.getChildByName('buttons').getChildByName('btnRules').getChildByName('boton_reglas_normal').getComponent(cc.Button);
 
         //this._btnBet1.interactable = false;
         //this._btnBet2.interactable = false;
@@ -175,7 +182,7 @@ cc.Class({
 
     btnLeaveClick: function () {
         console.log('Boton Salir....');
-        communicator.sendMessage( 'ExitGame {"data":{}}' );
+        //communicator.sendMessage( 'ExitGame {"data":{}}' );
         
         //De codigo de InfoBiz
         if(parent.hasOwnProperty("WindowAPI")){
@@ -271,11 +278,13 @@ cc.Class({
     btnReglasShow: function()
     {
         cc.find('uiLayer/reglas').getComponent(cc.Animation).play('reglas_show_anim');
+        this._btnRules.interactable = false;
     },
 
     btnReglasBack: function()
     {
         cc.find('uiLayer/reglas').getComponent(cc.Animation).play('reglas_hide_anim');
+        this._btnRules.interactable = true;    
     }
 /*
     btnGoToBonus: function()

@@ -97,6 +97,8 @@ cc.Class({
     {
         this._gameServer = this.node.getComponent('virtualServer');
         this._gameControl = aGameControl;
+
+        this._gameControl._audioManager.playBonusBgm();
         //cc.find('uiLayer').getComponent(cc.Animation).stop('ui_glow_anim');
 
         cc.find('Bonus/gameLayer/serpientes/serpientes_idle').active = false;

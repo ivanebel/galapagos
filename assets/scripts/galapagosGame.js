@@ -22,7 +22,7 @@ cc.Class({
         this._gameControl = aGameControl;
         
         cc.audioEngine.stopMusic();
-        //cc.audioEngine.playMusic(this.audio_Music, true);
+        cc.audioEngine.playMusic(this.audio_Music, true);
    
         //obtengo las referencias desde la escena cargada
         this._tiles = cc.find('Galapagos/gameLayer').getComponent('tiles');
