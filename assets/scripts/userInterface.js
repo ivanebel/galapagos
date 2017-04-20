@@ -1,3 +1,5 @@
+var communicator = require("communicator");
+
 cc.Class({
     extends: cc.Component,
 
@@ -118,14 +120,14 @@ cc.Class({
         //this._btnBet3.interactable = false;
         //this._btnBet4.interactable = false;
         
-        /** 
+        
         //communicator
         communicator.register("buttonstate", this.onButtonState.bind(this));
         communicator.register("accountstate", this.onAccountState.bind(this));
         communicator.register("betvalues", this.onBetValues.bind(this));
         communicator.register("addprizeanimation", this.onAddPrizeAnimation.bind(this));
         communicator.register("winanimation", this.onWinAnimation.bind(this));
-        */
+        
     },
 
     onButtonState: function ( jsonData ) {
@@ -180,9 +182,36 @@ cc.Class({
         
     },
 
+    //Animacion de los creditos ganados...
+    onWinAnimation: function ( jsonData ) {
+        console.log('Recibimos WinAnimation...' );
+        //Hacemos una animacion de numeros hasta el total ganado...
+        
+        /**
+        var lbl = this._winPrizeLayer.getChildByName('lblPrize').getComponent(cc.Label); 
+        
+        lbl.string = jsonData.prize;
+        
+        var act1 = cc.sequence(
+                cc.fadeIn(0.5),
+                cc.repeat( cc.sequence( 
+                    cc.scaleTo(0.1, 2 , 2),
+                    cc.delayTime(0.1),
+                    cc.scaleTo(0.1, 1 , 1)
+                    ).easing( cc.easeInOut(3.0) ), 4),
+                cc.delayTime(0.2),
+                cc.fadeOut(0.5)
+            );
+        
+        lbl.node.runAction( act1 );
+        */
+        this.scheduleOnce( function () { communicator.sendMessage( 'Finished {"data":{}}' ) } ,1);
+        
+    },
+
     btnLeaveClick: function () {
         console.log('Boton Salir....');
-        //communicator.sendMessage( 'ExitGame {"data":{}}' );
+        communicator.sendMessage( 'ExitGame {"data":{}}' );
         
         //De codigo de InfoBiz
         if(parent.hasOwnProperty("WindowAPI")){
@@ -194,7 +223,7 @@ cc.Class({
 
     btnBetClick : function(event, customEventData) {
         console.log('Boton de apuesta....' + customEventData );
-        //communicator.sendMessage( 'Bet {"data":{"bet":'+customEventData+'}}' );        
+        communicator.sendMessage( 'Bet {"data":{"bet":'+customEventData+'}}' );        
 
         //this.node.getChildByName('tmp').getComponent(cc.Label).string = 'Apuesta:' + customEventData;
         switch (customEventData)
@@ -234,7 +263,7 @@ cc.Class({
     
     btnStartGameClick: function () {
         console.log('Boton Jugar...');
-        //communicator.sendMessage( 'ClearBoard {"data":{}}' );
+        communicator.sendMessage( 'ClearBoard {"data":{}}' );
 
         this.node.getChildByName('buttons').getChildByName('btnPlay').active = false;
         this.node.getChildByName('buttons').getChildByName('btnCashout').active = true;
@@ -262,7 +291,7 @@ cc.Class({
 
     btnCashoutClick: function () {
         console.log('Boton Cobrar...');
-        //communicator.sendMessage( 'Cashout {"data":{}}' );        
+        communicator.sendMessage( 'Cashout {"data":{}}' );        
     },
 
     btnClearBetClick: function() {

@@ -1,3 +1,4 @@
+var communicator = require("communicator");
 
 var cGameControl = 
 {
@@ -75,7 +76,13 @@ var cGameControl =
         cc.director.preloadScene('bonus');
 
         //communicator events
-        
+        communicator.register("initialdata", this.onInitialData.bind(this));
+        communicator.register("startbonuslevel", this.onStartBonusLevel.bind(this));
+        communicator.register("clearboard", this.onClearBoard.bind(this));
+        communicator.register("boardstate", this.onBoardState.bind(this));
+        communicator.register("endgame", this.onEndGame.bind(this));
+        communicator.register("exit", this.onExit.bind(this));
+
         cc.log(this._fakeTicket);
 
         cc.director.loadScene('galapagos-main', this.onGalapagosLoaded.bind(this) );   
@@ -214,6 +221,9 @@ var cGameControl =
         {
             // Algun sonido?
             this._chosen_tiles_array.push(aTile);
+            
+            communicator.sendMessage( 'click {"data":{"clickindex":' + aTile.mysticIndex + '}}' );
+
             this.showTileContent(aTile);
             this._audioManager.playClick();
         }

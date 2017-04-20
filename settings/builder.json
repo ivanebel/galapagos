@@ -13,5 +13,12 @@
   "packageName": "org.cocos2d.helloworld",
   "startScene": "3f3281be-4fec-446e-80fd-3b14bab4593d",
   "title": "galapagos-demo-1",
-  "webOrientation": "auto"
+  "webOrientation": "auto",
+  "oauthLoginServer": "",
+  "appKey": "",
+  "appSecret": "",
+  "privateKey": "",
+  "renderMode": "0",
+  "inlineSpriteFrames": true,
+  "mergeStartScene": false
 }
